@@ -11,3 +11,8 @@ addEventListener('beforeunload', function (event) {
   const currentData = JSON.stringify(data);
   localStorage.setItem('data-storage', currentData);
 });
+
+const previousData = localStorage.getItem('data-storage');
+if (previousData !== null) {
+  data = JSON.parse(previousData);
+}
