@@ -16,12 +16,34 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+
   <header>
     <div class="container">
+      <h2>Code Journal</h2>
+      <h2>Code Journal</h2>
     </div>
   </header>
+
   <main class="container">
-    <div data-view="entry-form"></div>
+
+    <div data-view="entry-form">
+
+      <form id="new-entry">
+        <h2>New Entry</h2>
+        <img src="">
+        <label> Title
+          <input type="text" name="title">
+        </label>
+        <label> Photo URL
+          <input type="text" name="photoURL"/>
+        </label>
+        <label> Notes
+          <input type="text" name="notes"/>
+        </label>
+        <button type="submit">Save</button>
+      </form>
+
+    </div>
     <div data-view="entries" class="hidden"></div>
   </main>
   <script src="js/data.js"></script>
