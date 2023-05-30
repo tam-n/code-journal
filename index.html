@@ -20,7 +20,6 @@
   <header>
     <div class="container">
       <h2>Code Journal</h2>
-      <h2>Code Journal</h2>
     </div>
   </header>
 
@@ -30,17 +29,26 @@
 
       <form id="new-entry">
         <h2>New Entry</h2>
-        <img src="">
-        <label> Title
-          <input type="text" name="title">
-        </label>
-        <label> Photo URL
-          <input type="text" name="photoURL"/>
-        </label>
-        <label> Notes
-          <input type="text" name="notes"/>
-        </label>
-        <button type="submit">Save</button>
+        <div class="row">
+          <div class="column-full column-half">
+            <img src="images/placeholder-image-square.jpg">
+          </div>
+          <div class="column-full column-half">
+            <label> Title
+              <input type="text" name="title">
+            </label>
+            <label> Photo URL
+              <input type="text" name="photoURL"/>
+            </label>
+          </div>
+          <div class="column-full">
+            <label> Notes
+              <input type="text" name="notes"/>
+            </label>
+            <button type="submit">Save</button>
+          </div>
+
+        </div>
       </form>
 
     </div>
