@@ -9,10 +9,15 @@ const $form = document.querySelector('#new-entry');
 
 $form.addEventListener('submit', function (event) {
   event.preventDefault();
-  const newEntry = {};
+  const newEntry = {
+    title: null,
+    photoURL: null,
+    notes: null,
+    entryId: null
+  };
   newEntry.entryId = data.nextEntryId;
   data.nextEntryId++;
-  data.entries.push(newEntry);
+  data.entries.unshift(newEntry);
   $entryImage.setAttribute('src', 'images/placeholder-image-square.jpg');
   $form.reset();
 });
