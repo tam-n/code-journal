@@ -24,7 +24,6 @@ $form.addEventListener('submit', function (event) {
 
 function renderEntry(entry) {
 
-  const $list = document.createElement('ul');
   const $row = document.createElement('li');
   const $columnPhoto = document.createElement('div');
   const $columnNotes = document.createElement('div');
@@ -40,16 +39,23 @@ function renderEntry(entry) {
   $header.className = 'title';
   $notes.className = 'notes';
 
-  $list.appendChild($row);
   $row.appendChild($columnPhoto);
   $columnPhoto.appendChild($image);
   $row.appendChild($columnNotes);
+  $columnNotes.appendChild($header);
+  $columnNotes.appendChild($notes);
 
   $image.setAttribute('src', entry.photoURL);
   $header.textContent = entry.title;
   $notes.textContent = entry.notes;
 
-  return $list;
+  return $row;
 }
 
-renderEntry();
+const $list = document.querySelector('ul');
+
+document.addEventListener('DOMContentLoaded', function () {
+  for (let i = 0; i < data.entries.length; i++) {
+    $list.appendChild(renderEntry(data.entries[i]));
+  }
+});
