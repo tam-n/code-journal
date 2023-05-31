@@ -65,6 +65,13 @@ document.addEventListener('DOMContentLoaded', function () {
   for (let i = 0; i < data.entries.length; i++) {
     $list.appendChild(renderEntry(data.entries[i]));
   }
+  const lastView = localStorage.getItem('currentView');
+  if (lastView) {
+    viewSwap(lastView);
+  }
+  if (data.entries === []) {
+    toggleNoEntries();
+  }
 });
 
 function toggleNoEntries() {
@@ -79,9 +86,11 @@ function viewSwap(view) {
   if (view === 'entries') {
     $entriesView.classList.remove('hidden');
     $entryFormView.classList.add('hidden');
+    localStorage.setItem('currentView', 'entries');
   } else if (view === 'entry-form') {
     $entryFormView.classList.remove('hidden');
     $entriesView.classList.add('hidden');
+    localStorage.setItem('currentView', 'entry-form');
   }
 }
 
