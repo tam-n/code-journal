@@ -15,6 +15,7 @@
 .row {
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 2rem;
 }
 
 .column-half {
@@ -52,5 +53,9 @@ input {
 
   .header {
     padding: 0 0.75rem;
+  }
+
+  .column-full > h2 {
+    margin-top: 0;
   }
 }

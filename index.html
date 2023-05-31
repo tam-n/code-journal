@@ -31,26 +31,61 @@
   <main class="container">
 
     <div data-view="entry-form">
+      <div class="header">
+        <h2>Entries</h2>
+      </div>
+      <ul>
+        <li class="row">
+          <div class="column-full column-half">
+            <img src="images/placeholder-image-square.jpg" alt="entry image"/>
+          </div>
+          <div class="column-full column-half">
+            <h2 class="title">
+              Ada Lovelace
+            </h2>
+            <div class="notes"> Augusta Ada King, Countess of Lovelace was an English mathematician and writer, chiefly known for her work on Charles Babbage's proposed mechanical general-purpose computer, the Analytical Engine.
 
+            She was the first to recognize that the machine had applications beyond pure calculation, and to have published the first algorithm intended to be carried out by such a machine.
+            </div>
+          </div>
+        </li>
+        <li class="row">
+          <div class="column-full column-half">
+            <img src="images/placeholder-image-square.jpg" alt="entry image"/>
+          </div>
+          <div class="column-full column-half">
+            <h2 class="title">
+              JavaScript
+            </h2>
+            <div class="notes">Javascript, often abbreviated ass, is a programming language that conforms to the ECMAScript specification.
+
+            Javascript is high-level, often just-in-time compiled, and multi-paradigm. It hascurly-bracket syntax, dynamic typing, prototype-based object-orientation, and first-class functions.
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div data-view="entries" class="hidden">
+      <div class="header">
+        <h2>New Entry</h2>
+      </div>
       <form id="new-entry">
-        <div class="header">
-          <h2>New Entry</h2>
-        </div>
         <div class="row">
           <div class="column-full column-half">
-            <img class="entry-image" src="images/placeholder-image-square.jpg" alt="entry image">
+            <img id="entry-image" src="images/placeholder-image-square.jpg" alt="entry image">
           </div>
           <div class="column-full column-half">
             <label> Title
-              <input class="title" type="text" name="title" required/>
+              <input id="title" type="text" name="title" required/>
             </label>
             <label> Photo URL
-              <input class="input-image" type="text" name="image" required/>
+              <input id="input-image" type="text" name="image" required/>
             </label>
           </div>
           <div class="column-full">
             <label> Notes
-              <textarea class="notes" id="notes" name="notes" required></textarea>
+              <textarea id="notes" name="notes" required></textarea>
             </label>
             <div class="button-wrapper">
               <button type="submit">Save</button>
@@ -58,9 +93,8 @@
           </div>
         </div>
       </form>
-
     </div>
-    <div data-view="entries" class="hidden"></div>
+
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>

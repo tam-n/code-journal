@@ -1,7 +1,7 @@
-const $inputImage = document.querySelector('.input-image');
-const $entryImage = document.querySelector('.entry-image');
-const $inputTitle = document.querySelector('.title');
-const $inputNotes = document.querySelector('.notes');
+const $inputImage = document.querySelector('#input-image');
+const $entryImage = document.querySelector('#entry-image');
+const $inputTitle = document.querySelector('#title');
+const $inputNotes = document.querySelector('#notes');
 const $form = document.querySelector('#new-entry');
 
 $inputImage.addEventListener('input', function (event) {
