@@ -16,10 +16,17 @@ $form.addEventListener('submit', function (event) {
     notes: $inputNotes.value,
     entryId: data.nextEntryId
   };
+  $list.prepend.renderEntry(newEntry);
+  localStorage.clear();
+  viewSwap('entries');
+  if (data.entries === []) {
+    toggleNoEntries();
+  }
   data.nextEntryId++;
   data.entries.unshift(newEntry);
   $entryImage.setAttribute('src', 'images/placeholder-image-square.jpg');
   $form.reset();
+
 });
 
 function renderEntry(entry) {
@@ -60,10 +67,10 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
-// function toggleNoEntries() {
-//   const $noEntry = document.querySelector('.no-entries');
-//   $noEntry.className = 'no-entries-hidden';
-// }
+function toggleNoEntries() {
+  const $noEntry = document.querySelector('.no-entries');
+  $noEntry.className = 'no-entries-hidden';
+}
 
 function viewSwap(view) {
   const $entriesView = document.querySelector('[data-view="entries"]');
