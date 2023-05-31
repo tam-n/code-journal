@@ -79,3 +79,7 @@ ul {
 .no-entries {
   text-align: center;
 }
+
+.no-entries-hidden {
+  display: none;
+}

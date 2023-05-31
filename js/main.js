@@ -59,3 +59,10 @@ document.addEventListener('DOMContentLoaded', function () {
     $list.appendChild(renderEntry(data.entries[i]));
   }
 });
+
+function toggleNoEntries() {
+  const $noEntry = document.querySelector('.no-entries');
+  $noEntry.className = 'no-entries-hidden';
+}
+
+toggleNoEntries();
