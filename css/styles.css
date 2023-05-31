@@ -75,3 +75,7 @@ ul {
 .notes {
   white-space: pre-line;
 }
+
+.no-entries {
+  text-align: center;
+}
