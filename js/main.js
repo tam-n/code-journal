@@ -65,4 +65,16 @@ function toggleNoEntries() {
   $noEntry.className = 'no-entries-hidden';
 }
 
+function viewSwap(view) {
+  view.classList.remove('hidden');
+  if (view !== 'entries') {
+    const $dataView = document.querySelector('[data-view="entries"]');
+    $dataView.className = 'hidden';
+  } else if (view !== 'entry-form') {
+    const $dataView = document.querySelector('[data-view="entry-form"]');
+    $dataView.className = 'hidden';
+  }
+}
+
 toggleNoEntries();
+viewSwap();
