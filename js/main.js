@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function toggleNoEntries() {
   const $noEntry = document.querySelector('.no-entries');
-  if (data.entires !== null) {
+  if (data.entries !== null) {
     $noEntry.className = 'no-entries-hidden';
   } else {
     $noEntry.className = '.no-entries';
