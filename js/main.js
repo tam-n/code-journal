@@ -31,21 +31,29 @@ function renderEntry(entry) {
   const $columnPhoto = document.createElement('div');
   const $columnNotes = document.createElement('div');
   const $image = document.createElement('img');
+  const $titleWrapper = document.createElement('div');
+  const $pencil = document.createElement('i');
   const $header = document.createElement('h2');
   const $notes = document.createElement('div');
 
   $row.className = 'row';
+  $row.setAttribute('data-entry-id', entry.entryId);
   $columnPhoto.className = 'column-full column-half';
   $image.className = 'photo-url';
   $image.setAttribute('alt', 'entry image');
   $columnNotes.className = 'column-full column-half';
+  $titleWrapper.className = 'title-wrapper';
+  $pencil.className = 'fa-solid fa-pencil fa-xl';
+  $pencil.setAttribute('aria-hidden', 'true');
   $header.className = 'title';
   $notes.className = 'notes';
 
   $row.appendChild($columnPhoto);
   $columnPhoto.appendChild($image);
   $row.appendChild($columnNotes);
-  $columnNotes.appendChild($header);
+  $columnNotes.appendChild($titleWrapper);
+  $titleWrapper.appendChild($header);
+  $titleWrapper.appendChild($pencil);
   $columnNotes.appendChild($notes);
 
   $image.setAttribute('src', entry.photoURL);
@@ -70,7 +78,7 @@ function toggleNoEntries() {
   if (data.entries !== null) {
     $noEntry.className = 'no-entries-hidden';
   } else {
-    $noEntry.className = '.no-entries';
+    $noEntry.className = 'no-entries';
   }
 }
 
