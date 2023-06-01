@@ -22,11 +22,7 @@ $form.addEventListener('submit', function (event) {
   $form.reset();
   $list.prepend(renderEntry(newEntry));
   viewSwap('entries');
-  if (data.entries !== null) {
-    toggleNoEntries();
-  } else {
-    toggleNoEntries();
-  }
+  toggleNoEntries();
 });
 
 function renderEntry(entry) {
@@ -65,34 +61,32 @@ document.addEventListener('DOMContentLoaded', function () {
   for (let i = 0; i < data.entries.length; i++) {
     $list.appendChild(renderEntry(data.entries[i]));
   }
-  const lastView = localStorage.getItem('currentView');
-  if (lastView) {
-    viewSwap(lastView);
-  }
-  if (data.entries !== null) {
-    toggleNoEntries();
-  } else {
-    toggleNoEntries();
-  }
+  viewSwap(data.view);
+  toggleNoEntries();
 });
 
 function toggleNoEntries() {
   const $noEntry = document.querySelector('.no-entries');
-  $noEntry.className = 'no-entries-hidden';
+  if (data.entires !== null) {
+    $noEntry.className = 'no-entries-hidden';
+  } else {
+    $noEntry.className = '.no-entries';
+  }
 }
 
+const $entriesView = document.querySelector('[data-view="entries"]');
+const $entryFormView = document.querySelector('[data-view="entry-form"]');
+
 function viewSwap(view) {
-  const $entriesView = document.querySelector('[data-view="entries"]');
-  const $entryFormView = document.querySelector('[data-view="entry-form"]');
 
   if (view === 'entries') {
     $entriesView.classList.remove('hidden');
     $entryFormView.classList.add('hidden');
-    localStorage.setItem('currentView', 'entries');
+    data.view = 'entries';
   } else if (view === 'entry-form') {
     $entryFormView.classList.remove('hidden');
     $entriesView.classList.add('hidden');
-    localStorage.setItem('currentView', 'entry-form');
+    data.view = 'entry-form';
   }
 }
 
