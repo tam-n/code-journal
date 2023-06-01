@@ -16,17 +16,17 @@ $form.addEventListener('submit', function (event) {
     notes: $inputNotes.value,
     entryId: data.nextEntryId
   };
-  $list.prepend.renderEntry(newEntry);
-  localStorage.clear();
-  viewSwap('entries');
-  if (data.entries === []) {
-    toggleNoEntries();
-  }
   data.nextEntryId++;
   data.entries.unshift(newEntry);
   $entryImage.setAttribute('src', 'images/placeholder-image-square.jpg');
   $form.reset();
-
+  $list.prepend(renderEntry(newEntry));
+  viewSwap('entries');
+  if (data.entries !== null) {
+    toggleNoEntries();
+  } else {
+    toggleNoEntries();
+  }
 });
 
 function renderEntry(entry) {
@@ -69,7 +69,9 @@ document.addEventListener('DOMContentLoaded', function () {
   if (lastView) {
     viewSwap(lastView);
   }
-  if (data.entries === []) {
+  if (data.entries !== null) {
+    toggleNoEntries();
+  } else {
     toggleNoEntries();
   }
 });
@@ -97,7 +99,15 @@ function viewSwap(view) {
 const $header = document.querySelector('.header-wrapper');
 
 $header.addEventListener('click', function (event) {
-  if (event.target.matches('.tab')) {
+  if (event.target.matches('.entries')) {
     viewSwap('entries');
+  }
+});
+
+const $subHeader = document.querySelector('.sub-header');
+
+$subHeader.addEventListener('click', function (event) {
+  if (event.target.matches('.entry-form')) {
+    viewSwap('entry-form');
   }
 });
