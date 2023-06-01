@@ -113,3 +113,21 @@ $subHeader.addEventListener('click', function (event) {
     viewSwap('entry-form');
   }
 });
+
+const $newFormTitle = document.querySelector('.new-form-title');
+
+$list.addEventListener('click', function (event) {
+  if (event.target.matches('.fa-solid')) {
+    viewSwap('entry-form');
+    data.editing = data.entries[event.target.closest('.row').getAttribute('data-entry-id') - 1];
+    const input = new Event('input');
+
+    $inputTitle.value = data.editing.title;
+    $inputImage.value = data.editing.photoURL;
+    $inputNotes.value = data.editing.notes;
+    $newFormTitle.textContent = 'Edit Entry';
+
+    $inputImage.dispatchEvent(input);
+  }
+}
+);
