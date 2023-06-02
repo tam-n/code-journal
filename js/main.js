@@ -109,6 +109,8 @@ function viewSwap(view) {
   if (view === 'entries') {
     $entriesView.classList.remove('hidden');
     $entryFormView.classList.add('hidden');
+    $entryImage.setAttribute('src', 'images/placeholder-image-square.jpg');
+    $form.reset();
     data.view = 'entries';
   } else if (view === 'entry-form') {
     $entryFormView.classList.remove('hidden');
