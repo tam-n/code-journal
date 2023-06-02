@@ -10,19 +10,37 @@ $inputImage.addEventListener('input', function (event) {
 
 $form.addEventListener('submit', function (event) {
   event.preventDefault();
-  const newEntry = {
-    title: $inputTitle.value,
-    photoURL: $inputImage.value,
-    notes: $inputNotes.value,
-    entryId: data.nextEntryId
-  };
-  data.nextEntryId++;
-  data.entries.unshift(newEntry);
+  if (data.editing === null) {
+    const newEntry = {
+      title: $inputTitle.value,
+      photoURL: $inputImage.value,
+      notes: $inputNotes.value,
+      entryId: data.nextEntryId
+    };
+    data.nextEntryId++;
+    data.entries.unshift(newEntry);
+    $list.prepend(renderEntry(newEntry));
+  } else {
+    const newEntry = {
+      title: $inputTitle.value,
+      photoURL: $inputImage.value,
+      notes: $inputNotes.value,
+      entryId: data.editing.entryId
+    };
+    for (let i = 0; i < data.entries.length; i++) {
+      if (data.entries[i].entryId === newEntry.entryId) {
+        data.entries.splice(i, 1, newEntry);
+      }
+    }
+    const $oldEntry = document.querySelector('[data-entry-id="' + newEntry.entryId + '"]');
+    $list.replaceChild(renderEntry(newEntry), $oldEntry);
+    $newFormTitle.textContent = 'New Entry';
+    data.editing = null;
+  }
   $entryImage.setAttribute('src', 'images/placeholder-image-square.jpg');
-  $form.reset();
-  $list.prepend(renderEntry(newEntry));
-  viewSwap('entries');
   toggleNoEntries();
+  viewSwap('entries');
+  $form.reset();
 });
 
 function renderEntry(entry) {
@@ -74,11 +92,12 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function toggleNoEntries() {
-  const $noEntry = document.querySelector('.no-entries');
-  if (data.entries !== null) {
-    $noEntry.className = 'no-entries-hidden';
-  } else {
+  const $noEntry = document.querySelector('#no-entries');
+  if (data.entries.length === 0) {
     $noEntry.className = 'no-entries';
+  } else {
+    $noEntry.className = 'no-entries-hidden';
+
   }
 }
 
@@ -119,7 +138,14 @@ const $newFormTitle = document.querySelector('.new-form-title');
 $list.addEventListener('click', function (event) {
   if (event.target.matches('.fa-solid')) {
     viewSwap('entry-form');
-    data.editing = data.entries[event.target.closest('.row').getAttribute('data-entry-id') - 1];
+    const stringNum = event.target.closest('.row').getAttribute('data-entry-id');
+    const intNum = parseInt(stringNum);
+    for (let i = 0; i < data.entries.length; i++) {
+      if (data.entries[i].entryId === intNum) {
+        data.editing = data.entries[i];
+      }
+    }
+
     const input = new Event('input');
 
     $inputTitle.value = data.editing.title;
