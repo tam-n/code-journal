@@ -103,6 +103,8 @@ ul {
   justify-content: space-between;
   align-items: center;
   flex-basis: 100%;
+  margin-bottom: 20px;
+  font-size: 20px;
 }
 
 button.entry-form {
@@ -111,4 +113,18 @@ button.entry-form {
   border-radius: 6px;
   height: 40px;
   width: 60px;
+}
+
+.title-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fa-pencil {
+  color: rgb(90, 50, 130);
+}
+
+.title {
+  flex-basis: 100%;
 }
