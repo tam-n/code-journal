@@ -175,3 +175,21 @@ $cancel.addEventListener('click', function (event) {
   $modal.classList.add('hidden');
   $overlay.classList.add('hidden');
 });
+
+const $confirm = document.querySelector('.confirm');
+$confirm.addEventListener('click', function (event) {
+  for (let i = 0; i < data.entries.length; i++) {
+    if (data.entries[i].entryId === data.editing.entryId) {
+      const $child = document.querySelector('[data-entry-id="' + data.editing.entryId + '"]');
+      $child.parentNode.removeChild($child);
+      data.entries.splice(i, 1);
+    }
+  }
+  toggleNoEntries();
+  $modal.classList.add('hidden');
+  $overlay.classList.add('hidden');
+  viewSwap('entries');
+  data.editing = null;
+  $form.reset();
+  $entryImage.setAttribute('src', 'images/placeholder-image-square.jpg');
+});
