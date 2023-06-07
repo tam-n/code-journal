@@ -97,7 +97,6 @@ function toggleNoEntries() {
     $noEntry.className = 'no-entries';
   } else {
     $noEntry.className = 'no-entries-hidden';
-
   }
 }
 
@@ -110,6 +109,7 @@ function viewSwap(view) {
     $entriesView.classList.remove('hidden');
     $entryFormView.classList.add('hidden');
     $entryImage.setAttribute('src', 'images/placeholder-image-square.jpg');
+    $delete.className = 'delete-hidden';
     $form.reset();
     data.view = 'entries';
   } else if (view === 'entry-form') {
@@ -136,10 +136,12 @@ $subHeader.addEventListener('click', function (event) {
 });
 
 const $newFormTitle = document.querySelector('.new-form-title');
+const $delete = document.querySelector('.delete-hidden');
 
 $list.addEventListener('click', function (event) {
   if (event.target.matches('.fa-solid')) {
     viewSwap('entry-form');
+    $delete.className = 'delete';
     const stringNum = event.target.closest('.row').getAttribute('data-entry-id');
     const intNum = parseInt(stringNum);
     for (let i = 0; i < data.entries.length; i++) {
@@ -159,3 +161,35 @@ $list.addEventListener('click', function (event) {
   }
 }
 );
+
+const $modal = document.querySelector('.modal');
+const $overlay = document.querySelector('.overlay');
+
+$delete.addEventListener('click', function (event) {
+  $modal.classList.remove('hidden');
+  $overlay.classList.remove('hidden');
+});
+
+const $cancel = document.querySelector('.cancel');
+$cancel.addEventListener('click', function (event) {
+  $modal.classList.add('hidden');
+  $overlay.classList.add('hidden');
+});
+
+const $confirm = document.querySelector('.confirm');
+$confirm.addEventListener('click', function (event) {
+  for (let i = 0; i < data.entries.length; i++) {
+    if (data.entries[i].entryId === data.editing.entryId) {
+      const $child = document.querySelector('[data-entry-id="' + data.editing.entryId + '"]');
+      $child.parentNode.removeChild($child);
+      data.entries.splice(i, 1);
+    }
+  }
+  toggleNoEntries();
+  $modal.classList.add('hidden');
+  $overlay.classList.add('hidden');
+  viewSwap('entries');
+  data.editing = null;
+  $form.reset();
+  $entryImage.setAttribute('src', 'images/placeholder-image-square.jpg');
+});
